@@ -8,7 +8,7 @@ Provides compatibility between the [WPForms](https://wordpress.org/plugins/wpfor
 
 ### Notes
 
-* Tested with WPForms plugin version 1.8.4.1
+* Tested with WPForms plugin version 1.8.7.2
 
 ### Support, Feedback, & Contribute
 
