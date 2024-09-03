@@ -1,6 +1,6 @@
 # WP-Stateless - WPForms Addon
 
-Provides compatibility between the [WPForms](https://wordpress.org/plugins/wpforms-lite/) and the [WP-Stateless](https://wordpress.org/plugins/wp-stateless/) plugins.
+Provides compatibility between the [WPForms](https://wpforms.com/) (or [WPForms Lite](https://wordpress.org/plugins/wpforms-lite/)) and the [WP-Stateless](https://wordpress.org/plugins/wp-stateless/) plugins.
 
 ### Features
 
@@ -8,18 +8,18 @@ Provides compatibility between the [WPForms](https://wordpress.org/plugins/wpfor
 
 ### Notes
 
-* Tested with WPForms plugin version 1.8.7.2
+* Tested with WPForms plugin version 1.9.0.4
 
 ### Support, Feedback, & Contribute
 
-We welcome community involvement via the [GitHub repository](https://github.com/udx/wp-stateless-wp-forms-lite-addon).
+We welcome community involvement via the [GitHub repository](https://github.com/udx/wp-stateless-wpforms-addon).
 
 ### Frequently Asked Questions
 
 <details>
 <summary>Where can I submit feature requests or bug reports?</summary>
 
-We encourage community feedback and discussion through issues on the [GitHub repository](https://github.com/udx/wp-stateless-wp-forms-lite-addon/issues).
+We encourage community feedback and discussion through issues on the [GitHub repository](https://github.com/udx/wp-stateless-wpforms-addon/issues).
 </details>
 
 <details>

@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    '619c619eb0be8a443055b28545b5f0e9' => $baseDir . '/class-wpforms-lite.php',
+    'baf805cfd254f961bdb4205027030577' => $baseDir . '/class-wpforms.php',
 );
