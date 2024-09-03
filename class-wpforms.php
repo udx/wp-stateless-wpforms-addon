@@ -36,12 +36,13 @@ class WPForms extends Compatibility {
     add_action( 'wp_ajax_nopriv_wpforms_upload_chunk_init', [$this, 'remove_cache_busting'], 5);
     add_action( 'wp_ajax_wpforms_submit', [$this, 'remove_cache_busting'], 5);
     add_action( 'wp_ajax_nopriv_wpforms_submit', [$this, 'remove_cache_busting'], 5);
-    add_filter( 'sm:sync::syncArgs', [$this, 'sync_args'], 10, 4);
+    add_action( 'wpforms_process_entry_saved', [ $this, 'entry_saved' ], 10, 4 );
+    add_action( 'wpforms_pre_delete_entries', [ $this, 'pre_delete_entries' ], 10, 1 );
+    add_action( 'wpforms_pro_admin_entries_page_empty_trash_before', [ $this, 'before_empty_trash' ], 10, 1 );
+
     add_filter( 'wpforms_process_after_filter', [ $this, 'upload_complete' ], 10, 3 );
-    add_filter( 'wpforms_process_entry_saved', [ $this, 'entry_saved' ], 10, 4 );
     add_filter( 'wpforms_entry_email_data', [ $this, 'entry_email_data' ], 10, 3 );
-    add_filter( 'wpforms_pre_delete_entries', [ $this, 'pre_delete_entries' ], 10, 1 );
-    add_filter( 'wpforms_pro_admin_entries_page_empty_trash_before', [ $this, 'before_empty_trash' ], 10, 1 );
+    add_filter( 'sm:sync::syncArgs', [$this, 'sync_args'], 10, 4);
     add_filter( 'sm:sync::nonMediaFiles', [$this, 'sync_non_media_files'], 20);
   }
 
@@ -375,8 +376,15 @@ class WPForms extends Compatibility {
           continue;
         }
 
-        // filter temporary logs
+        // filter temporary files
         if (strpos($file, self::TMP_PATH) !== false) {
+          continue;
+        }
+
+        // filter index.html, .htaccess files
+        $basename = basename($file);
+
+        if ( in_array($basename, array('index.html', '.htaccess')) ) {
           continue;
         }
 
