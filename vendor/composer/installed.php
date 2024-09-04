@@ -3,7 +3,7 @@
         'name' => 'udx/wp-stateless-wpforms-lite-addon',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '0930d3f2535ef2dc1fe781fa7cc1992469330aae',
+        'reference' => '6e77eec897aa7ea23b4a72c25917962a6ddffd74',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'udx/wp-stateless-wpforms-lite-addon' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '0930d3f2535ef2dc1fe781fa7cc1992469330aae',
+            'reference' => '6e77eec897aa7ea23b4a72c25917962a6ddffd74',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

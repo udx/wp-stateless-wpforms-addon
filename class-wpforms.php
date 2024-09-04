@@ -39,6 +39,7 @@ class WPForms extends Compatibility {
     add_action( 'wpforms_process_entry_saved', [ $this, 'entry_saved' ], 10, 4 );
     add_action( 'wpforms_pre_delete_entries', [ $this, 'pre_delete_entries' ], 10, 1 );
     add_action( 'wpforms_pro_admin_entries_page_empty_trash_before', [ $this, 'before_empty_trash' ], 10, 1 );
+    add_action( 'wpforms_pre_delete_entry_fields', [ $this, 'pre_delete_entry_fields' ], 10, 2 );
 
     add_filter( 'wpforms_process_after_filter', [ $this, 'upload_complete' ], 10, 3 );
     add_filter( 'wpforms_entry_email_data', [ $this, 'entry_email_data' ], 10, 3 );
@@ -398,5 +399,45 @@ class WPForms extends Compatibility {
     }
 
     return $file_list;
+  }
+
+  /**
+   * Delete files from GCS when file deleted from entry.
+   */
+  public function pre_delete_entry_fields($row_id, $primary_key) {
+    // other cases are handled by other hooks
+    if ( $primary_key !== 'id' ) {
+      return;
+    }
+
+    global $wpdb;
+
+    try {
+      // WPForms uses direct database access and ignores caching, we should too
+      // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+      $value = $wpdb->get_var(
+        $wpdb->prepare(
+          "SELECT value FROM {$wpdb->prefix}wpforms_entry_fields WHERE id = %d",
+          $row_id,
+        )
+      );
+
+      // Not a file or not on GCS
+      if ( strpos( $value, ud_get_stateless_media()->get_gs_host() ) === false ) {
+        return;
+      }
+
+      // Not a WPForms file or Media Library file
+      if ( $this->storage_position($value) === false ) {
+        return;
+      }
+
+      $name = str_replace( trailingslashit( ud_get_stateless_media()->get_gs_host() ), '', $value);
+
+      do_action('sm:sync::deleteFile', $name);
+    } catch (\Throwable $e) {
+      error_log( $e->getMessage() );
+    }
+
   }
 }

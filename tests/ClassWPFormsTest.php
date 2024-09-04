@@ -47,6 +47,7 @@ class ClassWPFormsTest extends TestCase {
     self::assertNotFalse( has_action('wpforms_process_entry_saved', [ $wPForms, 'entry_saved' ]) );
     self::assertNotFalse( has_action('wpforms_pre_delete_entries', [ $wPForms, 'pre_delete_entries' ]) );
     self::assertNotFalse( has_action('wpforms_pro_admin_entries_page_empty_trash_before', [ $wPForms, 'before_empty_trash' ]) );
+    self::assertNotFalse( has_action('wpforms_pre_delete_entry_fields', [ $wPForms, 'pre_delete_entry_fields' ]) );
 
     self::assertNotFalse( has_filter('wpforms_process_after_filter', [ $wPForms, 'upload_complete' ]) );
     self::assertNotFalse( has_filter('wpforms_entry_email_data', [ $wPForms, 'entry_email_data' ]) );
