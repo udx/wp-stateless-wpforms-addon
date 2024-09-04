@@ -22,6 +22,8 @@ Provides compatibility between the [WPForms](https://wpforms.com/) (or [WPForms 
 
 * Tested with WPForms plugin version 1.9.0.4
 
+**Modern** file upload is not compatible with **Stateless** Mode. Please use **Classic** file upload or switch to another WP-Stateless Mode.
+
 = Support, Feedback, & Contribute =
 
 We welcome community involvement via the [GitHub repository](https://github.com/udx/wp-stateless-wpforms-addon).

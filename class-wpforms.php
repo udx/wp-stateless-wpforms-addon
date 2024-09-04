@@ -12,6 +12,8 @@ class WPForms extends Compatibility {
   const STORAGE_PATH = 'wpforms/';
   const TMP_PATH = self::STORAGE_PATH . 'tmp/';
   const UPLOAD_FIELD_TYPE = 'file-upload';
+  const MESSAGE_KEY = 'stateless-wpforms-modern';
+  const DISMISSED_MESSAGE_KEY = 'dismissed_notice_' . self::MESSAGE_KEY;
 
   protected $id = 'wpforms';
   protected $title = 'WPForms';
@@ -40,6 +42,8 @@ class WPForms extends Compatibility {
     add_action( 'wpforms_pre_delete_entries', [ $this, 'pre_delete_entries' ], 10, 1 );
     add_action( 'wpforms_pro_admin_entries_page_empty_trash_before', [ $this, 'before_empty_trash' ], 10, 1 );
     add_action( 'wpforms_pre_delete_entry_fields', [ $this, 'pre_delete_entry_fields' ], 10, 2 );
+    add_action( 'wpforms_builder_save_form', [ $this, 'builder_save_form' ], 10, 2 );
+    add_action( 'admin_init', [ $this, 'show_message' ]);
 
     add_filter( 'wpforms_process_after_filter', [ $this, 'upload_complete' ], 10, 3 );
     add_filter( 'wpforms_entry_email_data', [ $this, 'entry_email_data' ], 10, 3 );
@@ -437,6 +441,79 @@ class WPForms extends Compatibility {
       do_action('sm:sync::deleteFile', $name);
     } catch (\Throwable $e) {
       error_log( $e->getMessage() );
+    }
+  }
+
+  /**
+   * Show message in Admin Panel when Modern upload style is used during using Stateless mode
+   */
+  public function show_message() {
+    if ( !ud_get_stateless_media()->is_mode('stateless') ) {
+      return;
+    }
+
+    $message_option = get_option(self::MESSAGE_KEY, []);
+
+    if ( empty($message_option) ) {
+      return;
+    }
+
+    $form_names = array_filter( array_values($message_option) );
+
+    if ( empty($form_names) ) {
+      return;
+    }
+
+    $form_names = implode(', ', $form_names);
+    $form_names = '<strong>' . $form_names . '</strong>';
+
+    /* translators: %s: list of forms */
+    $message = __('<strong>Modern</strong> file upload is not compatible with <strong>Stateless</strong> Mode. Please use <strong>Classic</strong> file upload or switch to another WP-Stateless Mode.<br>Affected forms: %s', 'wp-stateless-wpforms-addon');
+    $message = sprintf($message, $form_names);
+
+    ud_get_stateless_media()->errors->add([
+      'title' => __('WP-Stateless: Incompatible Setting', 'wp-stateless-wpforms-addon'),
+      'message' => $message,
+      'key' => self::MESSAGE_KEY,
+    ], 'warning');
+  }
+
+  /**
+   * When saving form - show warning for the Modern upload style during using Stateless mode
+   */
+  public function builder_save_form($form_id, $form_data) {
+    $fields = is_array($form_data) && isset( $form_data['fields'] ) ? $form_data['fields'] : [];
+    $message_option = get_option(self::MESSAGE_KEY, []);
+    $found = false;
+
+    foreach ( $fields as $field ) {
+      if ( !isset( $field['type'] ) || $field['type'] !== self::UPLOAD_FIELD_TYPE ) {
+        continue;
+      }
+
+      if ( isset( $field['style'] ) && $field['style'] == 'modern' ) {
+        $found = true;
+        break;
+      }
+    }
+
+    if ( $found ) {
+      $title = isset( $form_data['settings']['form_title'] ) 
+        ? $form_data['settings']['form_title']
+        /* translators: %d: form ID */
+        : sprintf( __('Form %d', 'wp-stateless-wpforms-addon'), $form_id);
+
+      $message_option[$form_id] = $title;
+
+      delete_option(self::DISMISSED_MESSAGE_KEY);
+    } else {
+      unset($message_option[$form_id]);
+    }
+
+    if ( empty($message_option) ) {
+      delete_option(self::MESSAGE_KEY);
+    } else {
+      update_option(self::MESSAGE_KEY, $message_option);
     }
   }
 }

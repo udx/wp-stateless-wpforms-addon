@@ -48,11 +48,22 @@ class ClassWPFormsTest extends TestCase {
     self::assertNotFalse( has_action('wpforms_pre_delete_entries', [ $wPForms, 'pre_delete_entries' ]) );
     self::assertNotFalse( has_action('wpforms_pro_admin_entries_page_empty_trash_before', [ $wPForms, 'before_empty_trash' ]) );
     self::assertNotFalse( has_action('wpforms_pre_delete_entry_fields', [ $wPForms, 'pre_delete_entry_fields' ]) );
+    self::assertNotFalse( has_action('wpforms_builder_save_form', [ $wPForms, 'builder_save_form' ]) );
+    self::assertNotFalse( has_action('admin_init', [ $wPForms, 'show_message' ]) );
 
     self::assertNotFalse( has_filter('wpforms_process_after_filter', [ $wPForms, 'upload_complete' ]) );
     self::assertNotFalse( has_filter('wpforms_entry_email_data', [ $wPForms, 'entry_email_data' ]) );
     self::assertNotFalse( has_filter('sm:sync::syncArgs', [ $wPForms, 'sync_args' ]) );
     self::assertNotFalse( has_filter('sm:sync::nonMediaFiles', [ $wPForms, 'sync_non_media_files' ]) );
+  }
+
+  public function testShouldCountHooks() {
+    $wPForms = new WPForms();
+
+    Functions\expect('add_action')->times(11);
+    Functions\expect('add_filter')->times(4);
+
+    $wPForms->module_init([]);
   }
 
   public function testShouldRemoveFilter() {
