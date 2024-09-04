@@ -438,6 +438,5 @@ class WPForms extends Compatibility {
     } catch (\Throwable $e) {
       error_log( $e->getMessage() );
     }
-
   }
 }
