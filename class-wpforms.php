@@ -74,10 +74,6 @@ class WPForms extends Compatibility {
 
   /**
    * Skip cache busting for WPForms files.
-   * 
-   * @param $skip
-   * @param $file
-   * @return bool
    */
   public function remove_cache_busting() {
     remove_filter('sanitize_file_name', ['wpCloud\StatelessMedia\Utility', 'randomize_filename'], 10);
@@ -468,11 +464,11 @@ class WPForms extends Compatibility {
     $form_names = '<strong>' . $form_names . '</strong>';
 
     /* translators: %s: list of forms */
-    $message = __('<strong>Modern</strong> file upload is not compatible with <strong>Stateless</strong> Mode. Please use <strong>Classic</strong> file upload or switch to another WP-Stateless Mode.<br>Affected forms: %s', 'wp-stateless-wpforms-addon');
+    $message = __('The <em>File Upload</em> field with a <em>Modern</em> style is not compatible with <em>Stateless</em> mode. Change the WPForms field style to <em>Classic</em> or use another WP-Stateless mode with the <em>Modern</em> field style. <strong>Affected Form: %s</strong>', ud_get_stateless_media()->domain);
     $message = sprintf($message, $form_names);
 
     ud_get_stateless_media()->errors->add([
-      'title' => __('WP-Stateless: Incompatible Setting', 'wp-stateless-wpforms-addon'),
+      'title' => __('WP-Stateless: Problem Detected With WPForms', ud_get_stateless_media()->domain),
       'message' => $message,
       'key' => self::MESSAGE_KEY,
     ], 'warning');
