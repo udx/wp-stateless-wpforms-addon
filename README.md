@@ -11,8 +11,6 @@ Provides compatibility between the [WPForms](https://wpforms.com/) (or [WPForms 
 * Tested with WPForms plugin version 1.9.0.4
 * The _File Upload_ field with a _Modern_ style is not compatible with _Stateless_ mode. Change the WPForms field style to _Classic_ or use another WP-Stateless mode with the _Modern_ field style.
 
-**Modern** file upload is not compatible with **Stateless** Mode. Please use **Classic** file upload or switch to another WP-Stateless Mode.
-
 ### Support, Feedback, & Contribute
 
 We welcome community involvement via the [GitHub repository](https://github.com/udx/wp-stateless-wpforms-addon).
