@@ -44,24 +44,15 @@ class ClassWPFormsTest extends TestCase {
     self::assertNotFalse( has_action('wp_ajax_nopriv_wpforms_upload_chunk_init', [ $wPForms, 'remove_cache_busting' ]) );
     self::assertNotFalse( has_action('wp_ajax_wpforms_submit', [ $wPForms, 'remove_cache_busting' ]) );
     self::assertNotFalse( has_action('wp_ajax_nopriv_wpforms_submit', [ $wPForms, 'remove_cache_busting' ]) );
-    self::assertNotFalse( has_action('wpforms_process_entry_saved', [ $wPForms, 'entry_saved' ]) );
-    self::assertNotFalse( has_action('wpforms_pre_delete_entries', [ $wPForms, 'pre_delete_entries' ]) );
-    self::assertNotFalse( has_action('wpforms_pro_admin_entries_page_empty_trash_before', [ $wPForms, 'before_empty_trash' ]) );
-    self::assertNotFalse( has_action('wpforms_pre_delete_entry_fields', [ $wPForms, 'pre_delete_entry_fields' ]) );
-    self::assertNotFalse( has_action('wpforms_builder_save_form', [ $wPForms, 'builder_save_form' ]) );
-    self::assertNotFalse( has_action('admin_init', [ $wPForms, 'show_message' ]) );
 
-    self::assertNotFalse( has_filter('wpforms_process_after_filter', [ $wPForms, 'upload_complete' ]) );
-    self::assertNotFalse( has_filter('wpforms_entry_email_data', [ $wPForms, 'entry_email_data' ]) );
     self::assertNotFalse( has_filter('sm:sync::syncArgs', [ $wPForms, 'sync_args' ]) );
-    self::assertNotFalse( has_filter('sm:sync::nonMediaFiles', [ $wPForms, 'sync_non_media_files' ]) );
   }
 
   public function testShouldCountHooks() {
     $wPForms = new WPForms();
 
-    Functions\expect('add_action')->times(11);
-    Functions\expect('add_filter')->times(4);
+    Functions\expect('add_action')->times(5);
+    Functions\expect('add_filter')->times(1);
 
     $wPForms->module_init([]);
   }
@@ -118,24 +109,6 @@ class ClassWPFormsTest extends TestCase {
     self::assertEquals(
       0,
       count( $wPForms->sync_args([], self::TEST_URL, '', false) )
-    );
-  }
-
-  public function testShouldNotMoveUploadedFile() {
-    $wPForms = new WPForms();
-
-    self::assertEquals(
-      0,
-      count( $wPForms->upload_complete([], [], []) )
-    );
-  }
-
-  public function testShouldNotUpdateEmailData() {
-    $wPForms = new WPForms();
-
-    self::assertEquals(
-      0,
-      count( $wPForms->entry_email_data([], [], []) )
     );
   }
 }

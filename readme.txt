@@ -1,11 +1,11 @@
 === WP-Stateless - WPForms Addon ===
-Contributors: usability_dynamics, andypotanin, ideric, maxim.peshkov, planvova, obolgun
+Contributors: usability_dynamics, andypotanin, ideric, planvova, obolgun
 Donate link: https://udx.io
 Tags: wpforms, wpforms addon extension, google cloud storage, stateless, wp-stateless
 License: GPLv2 or later
 Requires PHP: 8.0
 Requires at least: 5.0
-Tested up to: 6.6.1
+Tested up to: 6.6.2
 Stable tag: 0.0.1
 
 Provides compatibility between the WPForms and the WP-Stateless plugins.
@@ -20,9 +20,7 @@ Provides compatibility between the [WPForms](https://wpforms.com/) (or [WPForms 
 
 = Notes =
 
-* Tested with WPForms plugin version 1.9.0.4
-
-* The _File Upload_ field with a _Modern_ style is not compatible with _Stateless_ mode. Change the WPForms field style to _Classic_ or use another WP-Stateless mode with the _Modern_ field style.
+* Tested with WPForms plugin version 1.9.1.2
 
 = Support, Feedback, & Contribute =
 
