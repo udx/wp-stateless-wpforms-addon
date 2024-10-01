@@ -16,7 +16,7 @@
   },
   "autoload": {
     "files": [
-      "class-wpforms-lite.php"
+      "class-wpforms.php"
     ]
   },
   "scripts": {

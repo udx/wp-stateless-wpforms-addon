@@ -7,7 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInit58c65c2fa76340fcbbe8b912b3bd46e8
 {
     public static $files = array (
-        '619c619eb0be8a443055b28545b5f0e9' => __DIR__ . '/../..' . '/class-wpforms-lite.php',
+        'baf805cfd254f961bdb4205027030577' => __DIR__ . '/../..' . '/class-wpforms.php',
     );
 
     public static $classMap = array (
