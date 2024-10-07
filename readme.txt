@@ -1,18 +1,18 @@
 === WP-Stateless - WPForms Addon ===
-Contributors: usability_dynamics, andypotanin, ideric, maxim.peshkov, planvova, obolgun
+Contributors: usability_dynamics, andypotanin, ideric, planvova, obolgun
 Donate link: https://udx.io
 Tags: wpforms, wpforms addon extension, google cloud storage, stateless, wp-stateless
 License: GPLv2 or later
 Requires PHP: 8.0
 Requires at least: 5.0
-Tested up to: 6.4.3
+Tested up to: 6.6.2
 Stable tag: 0.0.1
 
 Provides compatibility between the WPForms and the WP-Stateless plugins.
 
 == Description ==
 
-Provides compatibility between the [WPForms](https://wordpress.org/plugins/wpforms-lite/) and the [WP-Stateless](https://wordpress.org/plugins/wp-stateless/) plugins.
+Provides compatibility between the [WPForms](https://wpforms.com/) (or [WPForms Lite](https://wordpress.org/plugins/wpforms-lite/)) and the [WP-Stateless](https://wordpress.org/plugins/wp-stateless/) plugins.
 
 = Features =
 
@@ -20,17 +20,17 @@ Provides compatibility between the [WPForms](https://wordpress.org/plugins/wpfor
 
 = Notes =
 
-* Tested with WPForms plugin version 1.8.7.2
+* Tested with WPForms plugin version 1.9.1.2
 
 = Support, Feedback, & Contribute =
 
-We welcome community involvement via the [GitHub repository](https://github.com/udx/wp-stateless-wp-forms-lite-addon).
+We welcome community involvement via the [GitHub repository](https://github.com/udx/wp-stateless-wpforms-addon).
 
 == Frequently Asked Questions ==
 
 = Where can I submit feature requests or bug reports? =
 
-We encourage community feedback and discussion through issues on the [GitHub repository](https://github.com/udx/wp-stateless-wp-forms-lite-addon/issues).
+We encourage community feedback and discussion through issues on the [GitHub repository](https://github.com/udx/wp-stateless-wpforms-addon/issues).
 
 = Can I test new features before they are released? =
 
