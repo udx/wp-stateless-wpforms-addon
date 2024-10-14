@@ -6,7 +6,7 @@ License: GPLv2 or later
 Requires PHP: 8.0
 Requires at least: 5.0
 Tested up to: 6.6.2
-Stable tag: 0.0.1
+Stable tag: 0.0.2
 
 Provides compatibility between the WPForms and the WP-Stateless plugins.
 
@@ -20,7 +20,8 @@ Provides compatibility between the [WPForms](https://wpforms.com/) (or [WPForms 
 
 = Notes =
 
-* Tested with WPForms plugin version 1.9.1.2
+* Tested with WPForms plugin version 1.9.1.3
+* The _File Upload_ field with a _Modern_ style is not compatible with _Stateless_ mode. Change the WPForms field style to _Classic_ or use another WP-Stateless mode with the _Modern_ field style.
 
 = Support, Feedback, & Contribute =
 
@@ -43,6 +44,12 @@ To ensure new releases cause as little disruption as possible, we rely on early 
 == Upgrade Notice ==
 
 == Changelog ==
+
+= 0.0.2 =
+
+* FIX: WPForms Builder issues when `Cache Busting` enabled.
+* FIX: Added support for `File Upload` field type.
+* FIX: Added support for `File Upload` field type in emails.
 
 = 0.0.1 =
 
