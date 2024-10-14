@@ -8,7 +8,8 @@ Provides compatibility between the [WPForms](https://wpforms.com/) (or [WPForms 
 
 ### Notes
 
-* Tested with WPForms plugin version 1.9.1.2
+* Tested with WPForms plugin version 1.9.1.3
+* The _File Upload_ field with a _Modern_ style is not compatible with _Stateless_ mode. Change the WPForms field style to _Classic_ or use another WP-Stateless mode with the _Modern_ field style.
 
 ### Support, Feedback, & Contribute
 
